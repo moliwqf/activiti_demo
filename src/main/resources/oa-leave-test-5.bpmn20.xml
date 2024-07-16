@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="oa-leave-test-5" name="oa-leave-test-5" isExecutable="true">
+    <startEvent id="sid-6204a32b-fadc-4865-97ac-722a90e47174" name="开始">
+      <documentation>请假审批开始</documentation>
+    </startEvent>
+    <endEvent id="sid-72527d7d-1e8e-441a-b7b8-4b8327e7ea87" name="结束">
+      <documentation>请假审批结束</documentation>
+    </endEvent>
+    <userTask id="sid-15159336-7558-467f-9b8b-68a996db3034" name="请假申请"/>
+    <userTask id="sid-41c13342-c11d-4ea1-a05d-a00e74d19d08" name="经理审批"/>
+    <userTask id="sid-7c146acf-98cb-4d00-8f45-918a8e99f0a1" name="CEO 审批"/>
+    <userTask id="sid-272406ee-223e-4fdf-804a-e6fcf4e29124" name="老板审批"/>
+    <sequenceFlow id="sid-ae6165f6-705a-47da-9271-8a922b10c126" sourceRef="sid-6204a32b-fadc-4865-97ac-722a90e47174" targetRef="sid-15159336-7558-467f-9b8b-68a996db3034"/>
+    <sequenceFlow id="sid-353e289b-9cd3-419d-9ea4-3d2d45c6b0c4" sourceRef="sid-15159336-7558-467f-9b8b-68a996db3034" targetRef="sid-41c13342-c11d-4ea1-a05d-a00e74d19d08" name="5天以下">
+      <conditionExpression>${day&lt;5}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-f52c47a8-9a40-4e03-bf5a-23c8db68906f" sourceRef="sid-15159336-7558-467f-9b8b-68a996db3034" targetRef="sid-7c146acf-98cb-4d00-8f45-918a8e99f0a1" name="5 到 10 天">
+      <conditionExpression>${day &gt;= 5 &amp;&amp; day &lt;= 10}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-7e0d5438-2353-42ae-9130-6f3d41ad18c5" sourceRef="sid-15159336-7558-467f-9b8b-68a996db3034" targetRef="sid-272406ee-223e-4fdf-804a-e6fcf4e29124" name="10 天以上">
+      <conditionExpression>${day &gt; 10}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-7086714a-65b2-4e86-8bf4-10799324f11b" sourceRef="sid-41c13342-c11d-4ea1-a05d-a00e74d19d08" targetRef="sid-72527d7d-1e8e-441a-b7b8-4b8327e7ea87"/>
+    <sequenceFlow id="sid-d316da5f-eb3d-41eb-9940-acb0452e568c" sourceRef="sid-7c146acf-98cb-4d00-8f45-918a8e99f0a1" targetRef="sid-72527d7d-1e8e-441a-b7b8-4b8327e7ea87"/>
+    <sequenceFlow id="sid-cdf33942-b724-4f5e-b368-b4d52d31df64" sourceRef="sid-272406ee-223e-4fdf-804a-e6fcf4e29124" targetRef="sid-72527d7d-1e8e-441a-b7b8-4b8327e7ea87"/>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_oa-leave-test-5">
+    <bpmndi:BPMNPlane bpmnElement="oa-leave-test-5" id="BPMNPlane_oa-leave-test-5">
+      <bpmndi:BPMNShape id="shape-da2ee548-913a-40df-b3e7-158c398197a1" bpmnElement="sid-6204a32b-fadc-4865-97ac-722a90e47174">
+        <omgdc:Bounds x="-150.0" y="-20.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-928bcd55-2f9d-4dcc-9188-9a8410825038" bpmnElement="sid-72527d7d-1e8e-441a-b7b8-4b8327e7ea87">
+        <omgdc:Bounds x="205.0" y="-20.0" width="30.0" height="30.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-ddcde787-13fd-4b31-9928-26e57562aba2" bpmnElement="sid-15159336-7558-467f-9b8b-68a996db3034">
+        <omgdc:Bounds x="-75.0" y="-35.0" width="70.0" height="60.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-e2e2aac1-6bf8-4364-8b35-4d07df767e11" bpmnElement="sid-41c13342-c11d-4ea1-a05d-a00e74d19d08">
+        <omgdc:Bounds x="40.0" y="-115.0" width="70.0" height="60.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-5454c8a0-1b8d-47f3-9462-6797ae1b549e" bpmnElement="sid-7c146acf-98cb-4d00-8f45-918a8e99f0a1">
+        <omgdc:Bounds x="40.0" y="-35.0" width="70.0" height="60.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-b06a2850-58b5-4545-947c-18c57122eaab" bpmnElement="sid-272406ee-223e-4fdf-804a-e6fcf4e29124">
+        <omgdc:Bounds x="40.0" y="45.0" width="70.0" height="65.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge-ae38c632-9f88-4f25-9408-626ae6b39376" bpmnElement="sid-ae6165f6-705a-47da-9271-8a922b10c126">
+        <omgdi:waypoint x="-120.0" y="-5.0"/>
+        <omgdi:waypoint x="-75.0" y="-5.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-fc30e1dd-1df3-4650-87d3-ded471f547d8" bpmnElement="sid-353e289b-9cd3-419d-9ea4-3d2d45c6b0c4">
+        <omgdi:waypoint x="-40.0" y="-35.0"/>
+        <omgdi:waypoint x="-40.0" y="-85.0"/>
+        <omgdi:waypoint x="40.0" y="-85.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-e55d1469-9a12-4330-8902-37774f881fca" bpmnElement="sid-f52c47a8-9a40-4e03-bf5a-23c8db68906f">
+        <omgdi:waypoint x="-5.0" y="-5.0"/>
+        <omgdi:waypoint x="40.0" y="-5.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-624a2e17-99bf-4429-9208-16127206bbcd" bpmnElement="sid-7e0d5438-2353-42ae-9130-6f3d41ad18c5">
+        <omgdi:waypoint x="-40.0" y="25.0"/>
+        <omgdi:waypoint x="-40.0" y="77.5"/>
+        <omgdi:waypoint x="40.0" y="77.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-bbdb327a-a4fc-4ad0-bc72-a49d0d193973" bpmnElement="sid-7086714a-65b2-4e86-8bf4-10799324f11b">
+        <omgdi:waypoint x="110.0" y="-70.0"/>
+        <omgdi:waypoint x="205.0" y="-12.5"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-cb1a71a8-7dbe-46ff-9e7c-9479feb8cc1c" bpmnElement="sid-d316da5f-eb3d-41eb-9940-acb0452e568c">
+        <omgdi:waypoint x="110.0" y="-5.0"/>
+        <omgdi:waypoint x="205.0" y="-5.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge-d483ef68-4dca-4208-991f-017bc902bdba" bpmnElement="sid-cdf33942-b724-4f5e-b368-b4d52d31df64">
+        <omgdi:waypoint x="110.0" y="61.25"/>
+        <omgdi:waypoint x="205.0" y="2.5"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
